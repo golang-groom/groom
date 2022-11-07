@@ -3,37 +3,56 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"os/exec"
 	"syscall"
+
+	"github.com/pspiagicw/colorlog"
 )
 
 func main(){
 
+    version := flag.Bool("version" , false, "Print version info" )
+    verbose := flag.Bool("verbose", false, "Print verbose info")
+
     flag.Parse()
+
+    if *version {
+        os.Exit(0)
+    }
+
+    if len(flag.Args()) == 0 {
+        colorlog.LogError("No subcommand provided")
+
+        fmt.Println("Usage of `groom`")
+        fmt.Println("groom [SUBCOMMAND] [OPTIONS]")
+
+        flag.PrintDefaults()
+        os.Exit(0)
+    }
 
     arg := flag.Arg(0)
 
-    if arg == "-h" || arg == "help" {
-        flag.PrintDefaults()
-    } else {
-        binary , err := exec.LookPath(fmt.Sprintf("gurm-%s", arg))
+    name := fmt.Sprintf("groom-%s", arg)
 
-        if err != nil {
-            log.Fatalf("No such subcommand found")
-        }
+    binary , err := exec.LookPath(name)
 
-        args := flag.Args()[1:]
+    if err != nil {
+        colorlog.LogFatal("'%s', no such binary found on your $PATH variable", name)
+    }
 
-        env := os.Environ()
+    args := flag.Args()[1:]
 
-        execErr := syscall.Exec(binary , args, env)
+    env := os.Environ()
 
-        if execErr != nil {
-            log.Fatalf("Error executing subcommand")
-        }
+    if *verbose {
+        env = append(env, "GROOM_VERBOSE=1")
+    }
 
+    execErr := syscall.Exec(binary , args, env)
+
+    if execErr != nil {
+        colorlog.LogFatal("Error executing subcommand, %q", execErr)
     }
 
 }
