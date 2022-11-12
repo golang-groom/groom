@@ -6,14 +6,10 @@ It provides quality of life features missing currenly in `go` binary.
 
 ## Features
 
-- Create multiple projects.
-- Automatic Makefile generation
-- Automatic Extract documentation
-- Setup tests
-- And Many More...
+- Generate project structure (`groom-create`)
+- Install Golang binary (`groom-install`)
 
 ## Prequisites
-- make
 - Git 
 - Bash
 - Go
@@ -29,13 +25,17 @@ Currently 1 subcommand is supported
 ### Create
 
 This subcommand creates a project out of a predetermined templates.
-For the list of templates see [here]().
-
+For the list of templates and get more information [groom-create](https://github.com/golang-groom/groom-create).
 
 ## Roadmap
 
-- [ ] Integrate subcommands like `cargo` does. Example `groom-deb` should have support for making deb files.
-- [ ] Provide `release` subcommand. Thus `groom release` should compile for multiple architectures.
-- [ ] Handle global package management. Provide `groom install/remove` commands.
-- [ ] Generate `documentation`.
+- [ ] Detect available subcommands list them.
 
+## Possible subcommands
+- [ ] Groom Release (`groom-release`). Compile and compress for all platforms
+- [ ] Groom Deb (`groom-deb`). Generate a deb file for Debian platforms.
+- [ ] Groom Install/Remove (`groom-install`/`groom-remove`). Manage golang binaries and their depedencies.
+- [ ] Groom Documentation (`groom-doc`). Generate and serve documenation.
+
+## Contributing
+Contribution is gladly welcome. Read the [Contributing Guidlines]() before contributing.

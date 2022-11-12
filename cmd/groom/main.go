@@ -41,7 +41,7 @@ func main(){
         colorlog.LogFatal("'%s', no such binary found on your $PATH variable", name)
     }
 
-    args := flag.Args()[1:]
+    args := flag.Args()
 
     env := os.Environ()
 
