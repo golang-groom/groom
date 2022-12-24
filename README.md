@@ -1,8 +1,7 @@
 # Groom
 
-`groom` is to Go what `crate` is to Rust.
-
-It provides quality of life features missing currenly in `go` binary.
+`groom` is a project management tool for Golang.
+It tries to merge multiple tools and provide quality of life features missing in the Golang binary.
 
 ## Features
 
@@ -20,7 +19,6 @@ It provides quality of life features missing currenly in `go` binary.
 
 `groom` has many subcommands, each handles a part of golang project management
 
-Currently 1 subcommand is supported
 
 ### Create
 
@@ -31,7 +29,8 @@ For the list of templates and get more information [groom-create](https://github
 
 - [ ] Detect available subcommands list them.
 
-## Possible subcommands
+## Possible ideas.
+- [ ] Groom task (`groom-task`). A system-agnostic task runner.
 - [ ] Groom Release (`groom-release`). Compile and compress for all platforms
 - [ ] Groom Deb (`groom-deb`). Generate a deb file for Debian platforms.
 - [ ] Groom Install/Remove (`groom-install`/`groom-remove`). Manage golang binaries and their depedencies.
